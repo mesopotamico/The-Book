@@ -1,15 +1,38 @@
-fn main(){
-    let s1: &str = "hello world";
-    let s2: String = String::from("hola mundo");
+fn main(){ 
 
-   
+    let square = Rectangle::square(30);
 
-    let long = que_necesidad(&s2);  
-    println!("{} {}", s2, long);
+    let area = square.area();
+
+    println!("The side of the square is: {}, and the area is: {}", square.height, area);
+    
+    let square2 = Rectangle::square(20);
+    println!("The square can hold: {}",square.can_hold(&square2) );
+
 }
 
-fn que_necesidad(s: &String) -> usize {
-    s.len()
+struct Rectangle {
+    height: u32,
+    width: u32,
+        
 }
 
+impl Rectangle {
+    fn square(size: u32 ) -> Self {
+        Self {
+        width: size,
+        height: size,
+        }
+    }
+}
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+}
 
+impl Rectangle {
+    fn can_hold(&self,rec: &Rectangle) -> bool {
+        self.height > rec.height && self.width > rec.width 
+    }
+}
