@@ -1,38 +1,16 @@
 fn main(){ 
 
-    let square = Rectangle::square(30);
+    let config_max: Option<u8> = None; 
 
-    let area = square.area();
+    match config_max {
+        Some(max) => println!("The maximum is configured to be {max}"),
+        _ => (),
+    }
 
-    println!("The side of the square is: {}, and the area is: {}", square.height, area);
+    if let Some(max) = config_max {
+        println!("The maximum is configured to be {max}");
+    }
+
     
-    let square2 = Rectangle::square(20);
-    println!("The square can hold: {}",square.can_hold(&square2) );
-
 }
 
-struct Rectangle {
-    height: u32,
-    width: u32,
-        
-}
-
-impl Rectangle {
-    fn square(size: u32 ) -> Self {
-        Self {
-        width: size,
-        height: size,
-        }
-    }
-}
-impl Rectangle {
-    fn area(&self) -> u32 {
-        self.width * self.height
-    }
-}
-
-impl Rectangle {
-    fn can_hold(&self,rec: &Rectangle) -> bool {
-        self.height > rec.height && self.width > rec.width 
-    }
-}
